@@ -1,0 +1,25 @@
+# .github/workflows/deploy.yml
+name: Deploy to GitHub Pages
+
+# Trigger workflow on any push to the main branch
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository content
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      # Step 5: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./  # Adjust to `./build` or `./dist` if using a build step
+          # keep_files: false
